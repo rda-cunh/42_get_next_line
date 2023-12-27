@@ -10,13 +10,17 @@ int	main(void)
 
 	count = 0;
 	fd = open("example.txt", O_RDONLY);
-	next_line = get_next_line(fd);
-	count++;
-	// count is to show the line number
-	
-	printf("[line: %d] buffer: %s\n", count, next_line);
-	next_line = NULL; 
 
-	close (fd);
+	while (1)
+	{
+		next_line = get_next_line(fd);
+		if (next_line = NULL)
+			break ;
+		count++;
+		// count is to show the line number
+		printf("[line: %d] buffer: %s\n", count, next_line);
+		next_line = NULL; 
+	}
+	close(fd);
 	return (0);
 }

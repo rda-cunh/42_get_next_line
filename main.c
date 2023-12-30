@@ -5,21 +5,25 @@
 int	main(void)
 {
 	int	fd;
-	char *next_line;
+	char *line;
 	int	count;
 
 	count = 0;
 	fd = open("example.txt", O_RDONLY);
-
+	if (fd == -1)
+	{
+		printf("Error opening file");
+		return (1);
+	}
 	while (1)
 	{
-		next_line = get_next_line(fd);
-		if (next_line = NULL)
+		line = get_next_line(fd);
+		if (line == NULL)
 			break ;
 		count++;
-		// count is to show the line number
-		printf("[line: %d] buffer: %s\n", count, next_line);
-		next_line = NULL; 
+		printf("[line: %d] buffer: %s\n", count, line);
+		free(line);
+		line = NULL; 
 	}
 	close(fd);
 	return (0);

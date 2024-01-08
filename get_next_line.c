@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/02 17:23:33 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:04:30 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 static char	*read_from_file(int fd)
 {
-	int		bytes_read;
-	char	*buffer;
+	int			bytes_read;
+	char		*buffer;
 	static int	count = 1;
-	
+
 	printf("ft_calloc#[%d]---", count++);
-	buffer = ft_calloc(3+1, sizeof(char));
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
-	bytes_read = read(fd, buffer, 3);
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
 	{
 		free(buffer);
@@ -39,7 +39,7 @@ static char	*read_from_file(int fd)
 char	*get_next_line(int fd)
 {
 	char	*base_buffer;
-	
+
 	base_buffer = read_from_file(fd);
 	return (base_buffer);
 }

@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/08 22:22:05 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:25:24 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 3

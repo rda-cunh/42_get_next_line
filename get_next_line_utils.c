@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:06:00 by rda-cunh          #+#    #+#             */
-/*   Updated: 2023/12/27 12:01:34 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:46:53 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	altc;
+	char	*alts;
+
+	altc = c;
+	alts = (char *)s;
+	while (*alts != '\0')
+	{
+		if (*alts == altc)
+			return (alts);
+		alts++;
+	}
+	if (altc == 0)
+		return (alts);
+	return (NULL);
+}
 
 static void	*ft_memset(void *s, int c, size_t len)
 {

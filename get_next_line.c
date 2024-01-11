@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/08 19:04:30 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:40:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@ static char	*read_from_file(int fd)
 	return (buffer);
 }
 
-// function to get the next line from the file descriptor.
-
 char	*get_next_line(int fd)
 {
-	char	*base_buffer;
+	static char	*basein_buffer;
+	char	*line
 
-	base_buffer = read_from_file(fd);
-	return (base_buffer);
+	if (fd < 0 || read(fd, NULL, 0) > 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!basein_buffer)
+		basein_buffer = ft_calloc(1, sizeof(char));
+	if (!ft_strchr(basein_buffer, '\n'))
+		basein_buffer = read_from_file(basein_buffer, fd);
+	if (!basein_buffer)
+		return (free(basein_buffer), NULL);
+	line = extract_line(basein_buffer);
+	basein_buffer = obtain_remaining(basein_buffer);
+	return (line);
 }

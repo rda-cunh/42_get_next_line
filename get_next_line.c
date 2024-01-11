@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/11 18:40:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/11 18:49:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //Function to read data from the file and create partial content. 
 
-static char	*read_from_file(int fd)
+static char	*read_from_file(static char *basein_buffer, int fd)
 {
 	int			bytes_read;
 	char		*buffer;

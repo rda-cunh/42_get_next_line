@@ -3,14 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:06:00 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/11 18:46:53 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/26 19:12:42 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t len)
+{
+	unsigned char	*dtemp;
+	unsigned char	*stemp;
+
+	dtemp = (unsigned char *)dst;
+	stemp = (unsigned char *)src;
+	if (!dtemp && !stemp)
+		return (dst);
+	while (len > 0)
+	{
+		*dtemp = *stemp;
+		dtemp++;
+		stemp++;
+		len--;
+	}
+	return (dst);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, s1_len);
+	ft_memcpy(str + s1_len, s2, s2_len);
+	str[s1_len + s2_len] = '\0';
+	return (str);
+}
 
 char	*ft_strchr(const char *s, int c)
 {

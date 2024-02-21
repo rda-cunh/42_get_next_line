@@ -6,12 +6,12 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:40:25 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/02/20 23:37:57 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:08:44 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <get_next_line_basic_utils.h>
+#include "get_next_line_basic.h"
 
 char    *get_next_line_basic(int fd)
 {

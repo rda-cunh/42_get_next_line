@@ -6,12 +6,13 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:36:58 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/02/20 23:37:57 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:24:36 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <fcntl.h>
+#include <stdio.h>
+#include "get_next_line_basic.h"
 
 int main(void)
 {
@@ -20,7 +21,7 @@ int main(void)
     int     count;
 
     count = 0; 
-    fd = open("example.txt, O_RDONLY");
+    fd = open("example.txt", O_RDONLY);
     next_line = get_next_line_basic(fd);
     count++;
     printf("[%d]: %s\n", count, next_line);

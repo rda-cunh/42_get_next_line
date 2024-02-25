@@ -6,14 +6,19 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/26 19:12:42 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/02/25 00:34:50 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-//Function to append the read buffer data to the partial content (line)
+/* -------------------------------------------------------------------------- */
+/* Function to append the read buffer data to the partial content (line).     */
+/* The explorer (get_next_line) gracefully adds a scoop of water (read        */
+/* buffer) to the current cup (line) and returns the updated line for         */
+/* further examination.                                                       */
+/* -------------------------------------------------------------------------- */
 
 char	*append_buffer(char *basin_buffer, char *read_buffer)
 {
@@ -24,9 +29,15 @@ char	*append_buffer(char *basin_buffer, char *read_buffer)
 	return (temp);
 }
 
-//Function to read data from the file and create partial content
+/* -------------------------------------------------------------------------- */
+/* Function to read data from the file and append it to partial content.      */
+/* The explorer dips its magical thimble (buffer) into the aquarium (file)    */
+/* and retrieves a scoop of water (characters from the file). The explorer    */
+/* continues scooping until it encounters the special fish (newline) or       */
+/* examines the entire thimble (buffer).                                      */
+/* -------------------------------------------------------------------------- */
 
-static char	*read_from_file(static char *basin_buffer, int fd)
+char	*read_from_file(char *basin_buffer, int fd)
 {
 	int			bytes_read;
 	char		*cup_buffer;
@@ -51,6 +62,15 @@ static char	*read_from_file(static char *basin_buffer, int fd)
 	free (cup_buffer);
 	return (basin_buffer);
 }
+
+/*------------------------------------------------------------------------ */
+/* The main function to get the next line (fish) from the file descriptor. */
+/* Alex (get_next_line) gracefully reads lines from the                    */
+/* magical aquarium (input file) using the cup (buffer). Alex aims to find */
+/* and return each fish (line) one at a time without disturbing            */
+/* the rest of the aquarium (file) and avoiding reading the entire file    */
+/* at once. The explorer also handles edge cases and errors elegantly.     */
+/* ----------------------------------------------------------------------- */
 
 char	*get_next_line(int fd)
 {

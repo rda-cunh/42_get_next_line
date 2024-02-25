@@ -6,11 +6,58 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:06:00 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/01/26 19:12:42 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/02/25 10:40:08 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*extract_line(char *buffer)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (buffer[i] != '\0' && buffer[i] != '\n')
+		i++;
+	if (!(line = (char *)malloc(i + 1)))
+		return (NULL);
+	i = 0;
+	while (buffer[i] != '\0' && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*obtain_remaining(char *buffer)
+{
+	int		i;
+	int		j;
+	char	*remaining;
+
+	i = 0;
+	while (buffer[i] != '\0' && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\0')
+		return (NULL);
+	i++;
+	j = 0;
+	while (buffer[i + j] != '\0')
+		j++;
+	if (!(remaining = (char *)malloc(j + 1)))
+		return (NULL);
+	j = 0;
+	while (buffer[i + j] != '\0')
+	{
+		remaining[j] = buffer[i + j];
+		j++;
+	}
+	remaining[j] = '\0';
+	return (remaining);
+}
 
 size_t	ft_strlen(const char *s)
 {

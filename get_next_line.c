@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/02/25 00:34:50 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/02/25 11:42:40 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,20 @@ char	*get_next_line(int fd)
 	if (fd < 0 || read(fd, NULL, 0) > 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!basin_buffer)
+	{
 		basin_buffer = ft_calloc(1, sizeof(char));
+		if (basin_buffer == NULL)
+			return (NULL);
+	}
 	if (!ft_strchr(basin_buffer, '\n'))
 		basin_buffer = read_from_file(basin_buffer, fd);
 	if (!basin_buffer)
-		return (free(basin_buffer), NULL);
+		return (NULL);
 	line = extract_line(basin_buffer);
+	if (line == NULL)
+		return (NULL);
 	basin_buffer = obtain_remaining(basin_buffer);
 	return (line);
 }
+
+

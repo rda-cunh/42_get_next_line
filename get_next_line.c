@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/03 12:52:20 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:22:10 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,27 @@ static char	*get_line(char *buffer)
 	size_t	til_null;
 	size_t	til_new;
 
-	til_new = strlen_at(*buffer, '\n')
-	if ((*buffer)[til_new] == '\n')
+	til_new = strlen_at(buffer, '\n');
+	if (buffer[til_new] == '\n')
 		til_new++;
-	line = cpy_buffer(*buffer, til_new);
+	line = cpy_buffer(buffer, til_new);
 	if (!line)
 		return (NULL);
-	til_null = strlen_at(*buffer, '\0')
-	keep = cpy_buffer(*buffer + til_new, til_null - til_new + 1);
+	til_null = strlen_at(buffer, '\0');
+	keep = cpy_buffer(buffer + til_new, til_null - til_new + 1);
 	if (!keep)
 	{
 		free (line);
 		return (NULL);
 	}
-	free(*buffer)
-	*buffer = keep;
-	return (line);	
+	free(buffer);
+	buffer = keep;
+	return (line);
 }
 
-static char	*get_current_buffer(int fd, char *buffer,)
+static char	*get_current_buffer(int fd, char *buffer)
 {
-	size_t		bytes_read;
+	ssize_t		bytes_read;
 	char		*current_buffer;
 
 	bytes_read = 1;
@@ -75,7 +75,7 @@ char	*get_next_line(int fd)
 	buffer = get_current_buffer(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = get_line(&buffer);
+	line = get_line(buffer);
 	if (!buffer[0])
 	{
 		free (buffer);
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-/*
+
 int	main(void)
 {
 	int		fd;
@@ -106,4 +106,3 @@ int	main(void)
 	close(fd);
 	return (0);
 }
-/*

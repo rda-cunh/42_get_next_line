@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:06:00 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/04 23:56:06 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/06 22:49:30 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ char	*find_chr(const char *buffer, int to_find)
 		return (NULL);
 	while (*buffer)
 	{
-		if (*(unsigned char *)buffer == (unsigne char)to_find)
+		if (*(unsigned char *)buffer == (unsigned char)to_find)
 			return ((char *)buffer);
 		buffer++;
 	}
-	if (*(unsigned char *)buffer == (unsigned char)to_find);
+	if (*(unsigned char *)buffer == (unsigned char)to_find)
 		return ((char *)buffer);
 	return (NULL);
 }
@@ -87,7 +87,7 @@ char	*merge_previous_and_current(char *previous, const char *current)
 	if	(previous)
 		len_prev = strlen_at(previous, '\0');
 	len_curr = strlen_at(current, '\0');
-	merge = (char *)malloc(merge, previous, len_prev);
+	merge = (char *)malloc(len_prev + len_curr + 1);
 	if (!merge)
 		return (NULL);
 	if (previous)

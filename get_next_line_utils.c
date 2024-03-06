@@ -75,3 +75,26 @@ char *cpy_buffer(const char *buffer, size_t len)
 	cpy[i] = '\0';
 	return (cpy);
 }
+
+char	*merge_previous_and_current(char *previous, const char *current)
+{
+	size_t	len_prev;
+	size_t	len_curr;
+	char	*merge;
+
+	len_prev = 0;
+	len_curr = 0; 
+	if	(previous)
+		len_prev = strlen_at(previous, '\0');
+	len_curr = strlen_at(current, '\0');
+	merge = (char *)malloc(merge, previous, len_prev);
+	if (!merge)
+		return (NULL);
+	if (previous)
+		ft_memcpy(merge, previous, len_prev);
+	ft_memcpy(merge + len_prev, current, len_curr);
+	merge[len_prev + len_curr] = '\0';
+	if (previous)
+		free(previous);
+	return (merge);
+}

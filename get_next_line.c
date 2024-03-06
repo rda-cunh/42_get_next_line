@@ -84,15 +84,23 @@ char	*get_next_line(int fd)
 	return (line);
 }
 /*
-int	main(int argc, char const *argv[])
+int	main(void)
 {
 	int		fd;
+	int		linenumber; 
 	char	*line;
 
 	fd = open("example.txt", O_RDONLY);
-	while (line = get_next_line(fd))
+	if (fd < 0)
 	{
-		printf("%s", line);
+		perror("Error opening file");
+		return (1);
+	}
+	linenumber = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		linenumber++;
+		printf("[%d]: %s\n", linenumber, line);
 		free(line);
 	}
 	close(fd);

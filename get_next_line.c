@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/06 23:39:08 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:44:04 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
+/*
 int	main(void)
 {
 	int		fd;
@@ -105,4 +105,4 @@ int	main(void)
 	printf("\n");
 	close(fd);
 	return (0);
-}
+}*/

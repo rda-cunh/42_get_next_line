@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 16:02:39 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:32:06 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	remove_line(char **data)
 	*data = tmp;
 	if (**data == 0)
 	{
-//		free(*data);
+		free(*data);
 		*data = NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 17:40:01 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:43:56 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	remove_line(char **data)
 	}
 	tmp = malloc((ft_strlen(nl) + 1) * sizeof(char));
 	i = 0;
-	j = ft_strlen(*data) - ft_strlen(nl) +1;
+	j = ft_strlen(*data) - ft_strlen(nl) + 1;
 	while (j < ft_strlen(*data))
 		tmp[i++] = (*data)[j++];
 	tmp[i] = '\0';

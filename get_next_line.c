@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 17:09:32 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:40:01 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	int	read_buffer(int fd, char **data, char *buffer)
 	return (bytes);
 }
 
-//	Takes the string/line to return from data
+//	Takes the line/string to return from data
 
 static void	get_line(char **data, char **line)
 {
@@ -57,7 +57,7 @@ static void	get_line(char **data, char **line)
 	(*line)[i] = '\0';
 }
 
-//	Removes the string/line obtained in get_line() from data
+//	Removes the line/string obtained in get_line() from data
 
 static void	remove_line(char **data)
 {

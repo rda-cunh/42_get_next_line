@@ -6,25 +6,82 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:06:00 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/06 22:49:30 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 00:50:12 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	strlen_at(const char *s, int avoid)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	char	altc;
+	char	*alts;
+
+	altc = c;
+	alts = (char *)s;
+	while (*alts != '\0')
+	{
+		if (*alts == altc)
+			return (alts);
+		alts++;
+	}
+	if (altc == 0)
+		return (alts);
+	return (NULL);
+}
+
+void	ft_bzero(void *b, size_t len)
+{
+	ft_memset(b, 0, len);
+}
+
+static void	*ft_memset(void *s, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*tmp;
+
+	tmp = (unsigned char *)s;
+	i = 0;
+	while (i < len)
+	{
+		tmp[i] = c;
+		i++;
+	}
+	return (s);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, s1_len);
+	ft_memcpy(str + s1_len, s2, s2_len);
+	str[s1_len + s2_len] = '\0';
+	return (str);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] && s[i] != avoid)
+	while (s[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t len)
+static void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
 	unsigned char	*dtemp;
 	unsigned char	*stemp;
@@ -41,60 +98,4 @@ void	*ft_memcpy(void *dst, const void *src, size_t len)
 		len--;
 	}
 	return (dst);
-}
-
-char	*find_chr(const char *buffer, int to_find)
-{
-	if (!buffer)
-		return (NULL);
-	while (*buffer)
-	{
-		if (*(unsigned char *)buffer == (unsigned char)to_find)
-			return ((char *)buffer);
-		buffer++;
-	}
-	if (*(unsigned char *)buffer == (unsigned char)to_find)
-		return ((char *)buffer);
-	return (NULL);
-}
-
-char *cpy_buffer(const char *buffer, size_t len)
-{
-	char	*cpy;
-	size_t	i;
-
-	cpy = (char *) malloc(len + 1);
-	if (!cpy)
-		return (NULL);
-	i = 0;
-	while (buffer[i] && i < len)
-	{
-		cpy[i] = buffer[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
-}
-
-char	*merge_previous_and_current(char *previous, const char *current)
-{
-	size_t	len_prev;
-	size_t	len_curr;
-	char	*merge;
-
-	len_prev = 0;
-	len_curr = 0; 
-	if	(previous)
-		len_prev = strlen_at(previous, '\0');
-	len_curr = strlen_at(current, '\0');
-	merge = (char *)malloc(len_prev + len_curr + 1);
-	if (!merge)
-		return (NULL);
-	if (previous)
-		ft_memcpy(merge, previous, len_prev);
-	ft_memcpy(merge + len_prev, current, len_curr);
-	merge[len_prev + len_curr] = '\0';
-	if (previous)
-		free(previous);
-	return (merge);
 }

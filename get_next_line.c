@@ -6,81 +6,71 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/06 23:44:04 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 00:56:13 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*get_line(char **buffer)
-{
-	char	*line;
-	char	*keep;
-	size_t	til_null;
-	size_t	til_new;
+//	function that reads file, stores string in the buffer and joins it to data
 
-	til_new = strlen_at(*buffer, '\n');
-	if ((*buffer)[til_new] == '\n')
-		til_new++;
-	line = cpy_buffer(*buffer, til_new);
-	if (!line)
-		return (NULL);
-	til_null = strlen_at(*buffer, '\0');
-	keep = cpy_buffer(*buffer + til_new, til_null - til_new + 1);
-	if (!keep)
+static	int	read_buffer(int fd, char **data, char *buffer)
+{
+	char	*tmp;
+	int		bytes;
+
+	ft_bzero(buffer, BUFFER_SIZE + 1);
+	bytes = read(fd, buffer, BUFFER_SIZE);
+	if (bytes < 0 || buffer == NULL)
 	{
-		free (line);
-		return (NULL);
+		free(*data);
+		*data = NULL;
+		return (-1);
 	}
-	free(*buffer);
-	*buffer = keep;
-	return (line);
+	if (bytes == 0)
+		return (bytes);
+	tmp = ft_strjoin(*data, buffer);
+	free(*data);
+	*data = tmp;
+	return (bytes);
 }
 
-static char	*get_current_buffer(int fd, char *buffer)
-{
-	char	*current;
-	ssize_t	bytes;
+//	Removes the string obtained in get_line() from data
 
-	bytes = 1;
-	current = (char *)malloc(BUFFER_SIZE + 1);
-	if (!current)
-		return (NULL);
-	while (bytes > 0 && !find_chr(buffer, '\n'))
-	{
-		bytes = read(fd, current, BUFFER_SIZE);
-		if (bytes == 0)
-			break ;
-		if (bytes == -1)
-		{
-			free(current);
-			return (NULL);
-		}
-		current[bytes] = '\0';
-		buffer = merge_previous_and_current(buffer, current);
-	}
-	free(current);
-	if (strlen_at(buffer, '\0') > 0)
-		return (buffer);
-	return (NULL);
+static void	remove_result(char **data)
+
+
+//	Takes the string to return from data
+
+static void	get_line(char **data, char **line)
+{
+	char	*nl;
+	size_t	len;
+	size_t	i;
+
+	nl = ft_strchr(*data, '\n');
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*data;
 	char		*line;
+	char		*buffer;
+	int			bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = get_current_buffer(fd, buffer);
-	if (!buffer)
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	bytes = 1;
+	while (ft_strchr(data, '\n') == NULL && bytes > 0)
+		bytes = read_buffer(fd, &data, buffer);
+	free(buffer);
+	if (bytes == -1)
 		return (NULL);
-	line = get_line(&buffer);
-	if (!buffer[0])
-	{
-		free (buffer);
-		buffer = NULL;
-	}
+	if (ft_strlen(data) == 0)
+		return (NULL);
+	get_line(&data, &line);
+	remove_line(&data);
 	return (line);
 }
 /*

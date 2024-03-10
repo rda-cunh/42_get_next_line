@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 15:22:28 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:47:17 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 
 // macro to define fuffer size
-// can be cahncing using "-D BUFFER_SIZE=n" while reunning
+// can be changed using "-D BUFFER_SIZE=n" while running
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32

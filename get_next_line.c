@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 16:43:55 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:48:37 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,28 @@ static	int	read_buffer(int fd, char **data, char *buffer)
 	free(*data);
 	*data = tmp;
 	return (bytes);
+}
+
+//	Takes the string/line to return from data
+
+static void	get_line(char **data, char **line)
+{
+	char	*nl;
+	size_t	len;
+	size_t	i;
+
+	nl = ft_strchr(*data, '\n');
+	len = ft_strlen(*data) - ft_strlen(nl) + 2;
+	*line = (char *)malloc(len * sizeof(char));
+	if (!*line)
+		return ;
+	i = 0;
+	while (i < len - 1)
+	{
+		(*line)[i] = (*data)[i];
+		i++;
+	}
+	(*line)[i] = '\0';
 }
 
 //	Removes the string/line obtained in get_line() from data
@@ -64,28 +86,6 @@ static void	remove_line(char **data)
 		free(*data);
 		*data = NULL;
 	}
-}
-
-//	Takes the string/line to return from data
-
-static void	get_line(char **data, char **line)
-{
-	char	*nl;
-	size_t	len;
-	size_t	i;
-
-	nl = ft_strchr(*data, '\n');
-	len = ft_strlen(*data) - ft_strlen(nl) + 2;
-	*line = (char *)malloc(len * sizeof(char));
-	if (!*line)
-		return ;
-	i = 0;
-	while (i < len - 1)
-	{
-		(*line)[i] = (*data)[i];
-		i++;
-	}
-	(*line)[i] = '\0';
 }
 
 //	get next line main function

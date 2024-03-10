@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/04 23:36:25 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:22:28 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+// macro to define fuffer size
+// can be cahncing using "-D BUFFER_SIZE=n" while reunning
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
 
 char	*get_next_line(int fd);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-size_t	strlen_at(const char *s, int c);
-char	*cpy_buffer(const char *s, size_t n);
-char	*find_chr(const char *s, int c);
-char	*merge_previous_and_current(char *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+void	ft_bzero(void *b, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
 
 #endif

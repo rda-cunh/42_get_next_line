@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 00:56:13 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:28:10 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,38 @@ static	int	read_buffer(int fd, char **data, char *buffer)
 	return (bytes);
 }
 
-//	Removes the string obtained in get_line() from data
+//	Removes the string/line obtained in get_line() from data
 
-static void	remove_result(char **data)
+static void	remove_line(char **data)
+{
+	char	*nl;
+	char	*tmp;
+	size_t	i;
+	size_t	j;
 
+	nl = ft_strchr(*data, '\n');
+	if (!nl)
+	{
+		free(*data);
+		*data = NULL;
+		return ;
+	}
+	tmp = malloc(ft_strlen(nl) * sizeof(char));
+	i = 0;
+	j = ft_strlen(*data) - ft_strlen(nl) +1;
+	while (j < ft_strlen(*data))
+		tmp[i++] = (*data[j++]);
+	tmp[i] = '\0';
+	free(*data);
+	*data = tmp;
+	if (**data == 0)
+	{
+		free(*data);
+		*data = NULL;
+	}
+}
 
-//	Takes the string to return from data
+//	Takes the string/line to return from data
 
 static void	get_line(char **data, char **line)
 {
@@ -49,7 +75,20 @@ static void	get_line(char **data, char **line)
 	size_t	i;
 
 	nl = ft_strchr(*data, '\n');
+	len = ft_strlen(*data) - ft_strlen(nl) + 2;
+	*line = (char *)malloc(len * sizeof(char));
+	if (!line)
+		return ;
+	i = 0;
+	while (i < len - 1)
+	{
+		(*line)[i] = (*data)[i];
+		i++;
+	}
+	(*line)[i] = '\0';
 }
+
+//	get next line main function
 
 char	*get_next_line(int fd)
 {
@@ -73,11 +112,11 @@ char	*get_next_line(int fd)
 	remove_line(&data);
 	return (line);
 }
-/*
+
 int	main(void)
 {
 	int		fd;
-	int		linenumber; 
+	int		linenumber;
 	char	*line;
 
 	fd = open("example.txt", O_RDONLY);
@@ -95,4 +134,4 @@ int	main(void)
 	printf("\n");
 	close(fd);
 	return (0);
-}*/
+}

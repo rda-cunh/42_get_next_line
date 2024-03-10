@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 16:48:37 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:09:32 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	get_line(char **data, char **line)
 	nl = ft_strchr(*data, '\n');
 	len = ft_strlen(*data) - ft_strlen(nl) + 2;
 	*line = (char *)malloc(len * sizeof(char));
-	if (!*line)
+	if (!line)
 		return ;
 	i = 0;
 	while (i < len - 1)
@@ -73,7 +73,7 @@ static void	remove_line(char **data)
 		*data = NULL;
 		return ;
 	}
-	tmp = malloc(ft_strlen(nl) * sizeof(char));
+	tmp = malloc((ft_strlen(nl) + 1) * sizeof(char));
 	i = 0;
 	j = ft_strlen(*data) - ft_strlen(nl) +1;
 	while (j < ft_strlen(*data))

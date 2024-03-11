@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 17:43:56 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/11 23:15:20 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	remove_line(char **data)
 
 char	*get_next_line(int fd)
 {
-	static char	*data;
+	static char	*data[MAX_FILES_OPENED];
 	char		*line;
 	char		*buffer;
 	int			bytes;

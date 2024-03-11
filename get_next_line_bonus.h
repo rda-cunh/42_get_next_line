@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/10 16:47:17 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/11 23:17:40 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 
+//	MAX_FILES_OPENED is obtained using the command "ulimit -a"
+# ifndef MAX_FILES_OPENED
+#  define MAX_FILES_OPENED 65536
+# endif
+
 // macro to define fuffer size
 // can be changed using "-D BUFFER_SIZE=n" while running
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif

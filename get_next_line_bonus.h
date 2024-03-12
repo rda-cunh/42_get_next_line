@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/11 23:17:40 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/12 22:51:35 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-//	MAX_FILES_OPENED is obtained using the command "ulimit -a"
-# ifndef MAX_FILES_OPENED
-#  define MAX_FILES_OPENED 65536
+//	MAX_FILES is obtained using the command "ulimit -a"
+# ifndef MAX_FILES
+#  define MAX_FILES 65536
 # endif
 
 // macro to define fuffer size

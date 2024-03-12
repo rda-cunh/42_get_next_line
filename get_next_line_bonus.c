@@ -6,11 +6,11 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/11 23:15:20 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/12 23:37:41 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 //	function that reads file, stores string in the buffer and joins it to data
 
@@ -88,51 +88,66 @@ static void	remove_line(char **data)
 	}
 }
 
-//	get next line main function
+//	get next line main function that reads from multiple files
+// and uses an array of pointers to store the information 
 
 char	*get_next_line(int fd)
 {
-	static char	*data[MAX_FILES_OPENED];
+	static char	*data[MAX_FILES];
 	char		*line;
 	char		*buffer;
 	int			bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= MAX_FILES)
 		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	bytes = 1;
-	while (ft_strchr(data, '\n') == NULL && bytes > 0)
-		bytes = read_buffer(fd, &data, buffer);
+	while (ft_strchr((data[fd]), '\n') == NULL && bytes > 0)
+		bytes = read_buffer(fd, &(data[fd]), buffer);
 	free(buffer);
 	if (bytes == -1)
 		return (NULL);
-	if (ft_strlen(data) == 0)
+	if (ft_strlen(data[fd]) == 0)
 		return (NULL);
-	get_line(&data, &line);
-	remove_line(&data);
+	get_line(&(data[fd]), &line);
+	remove_line(&(data[fd]));
 	return (line);
 }
 /*
 int	main(void)
 {
-	int		fd;
-	int		linenumber;
+	int		fd[2];
 	char	*line;
 
-	fd = open("example.txt", O_RDONLY);
-	if (fd < 0)
+	fd[0] = open("example.txt", O_RDONLY);
+	if (fd[0] < 0)
 	{
 		perror("Error opening file");
 		return (1);
 	}
-	linenumber = 0;
-	while ((line = get_next_line(fd)) != NULL)
+
+	fd[1] = open("example2.txt", O_RDONLY);
+	if (fd[1] < 0)
 	{
-		linenumber++;
-		printf("[%d]: %s", linenumber, line);
+		perror("Error opening file");
+		close(fd[0]);
+		return (1);
 	}
-	printf("\n");
-	close(fd);
+
+	while ((line = get_next_line(fd[0])) != NULL)
+	{
+		printf("%s\n",  line);
+		free(line);
+	}
+	close(fd[0]);
+	
+	while ((line = get_next_line(fd[1])) != NULL)
+	{
+		printf("%s\n",  line);
+		free(line);
+	}
+	close(fd[1]);
+	
 	return (0);
 }
 */

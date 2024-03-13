@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:54 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/12 23:37:41 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/13 22:20:30 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ int	main(void)
 	}
 	close(fd[0]);
 	
+	printf("\n");
+
 	while ((line = get_next_line(fd[1])) != NULL)
 	{
 		printf("%s\n",  line);

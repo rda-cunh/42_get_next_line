@@ -6,7 +6,7 @@
 /*   By: rda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:05:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/03/12 22:51:35 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/03/13 22:15:53 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 //	MAX_FILES is obtained using the command "ulimit -a"
 # ifndef MAX_FILES
-#  define MAX_FILES 65536
+#  define MAX_FILES 1048576
 # endif
 
 // macro to define fuffer size
